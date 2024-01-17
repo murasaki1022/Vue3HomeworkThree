@@ -1,4 +1,8 @@
 import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+let productModal = null;
+let delProductModal = null;
+
 createApp({
   data() {
     return {
@@ -33,6 +37,12 @@ createApp({
           console.log(error);
         });
     },
+    openProductModal() {
+      productModal.show();
+    },
+    openDelProductModal() {
+      delProductModal.show();
+    },
   },
   mounted() {
     const token = document.cookie.replace(
@@ -41,5 +51,21 @@ createApp({
     );
     axios.defaults.headers.common["Authorization"] = token;
     this.checkAdmin();
+
+    productModal = new bootstrap.Modal(
+      document.getElementById("productModal"),
+      {
+        keyboard: false,
+        backdrop: "static",
+      }
+    );
+
+    delProductModal = new bootstrap.Modal(
+      document.getElementById("delProductModal"),
+      {
+        keyboard: false,
+        backdrop: "static",
+      }
+    );
   },
 }).mount("#app");
