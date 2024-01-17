@@ -9,6 +9,7 @@ createApp({
       apiUrl: `https://vue3-course-api.hexschool.io`,
       path: `murasaki1022`,
       products: [],
+      isNew: false,
       tempProduct: {},
     };
   },
@@ -37,11 +38,19 @@ createApp({
           console.log(error);
         });
     },
-    openProductModal() {
-      productModal.show();
-    },
-    openDelProductModal() {
-      delProductModal.show();
+    openModal(status, item) {
+      if (status === "new") {
+        this.tempProduct = {};
+        this.isNew = true;
+        productModal.show();
+      } else if (status === "edit") {
+        this.tempProduct = { ...item };
+        this.isNew = false;
+        productModal.show();
+      } else if (status === "delete") {
+        this.tempProduct = { ...item };
+        delProductModal.show();
+      }
     },
   },
   mounted() {

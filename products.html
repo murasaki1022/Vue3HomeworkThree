@@ -17,7 +17,7 @@
     <div id="app">
       <div class="container">
         <div class="text-end mt-4">
-          <button class="btn btn-primary" @click="openProductModal">
+          <button class="btn btn-primary" @click="openModal('new')">
             建立新的產品
           </button>
         </div>
@@ -44,13 +44,17 @@
               </td>
               <td>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-outline-primary btn-sm">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    @click="openModal('edit',item)"
+                  >
                     編輯
                   </button>
                   <button
                     type="button"
                     class="btn btn-outline-danger btn-sm"
-                    @click="openDelProductModal"
+                    @click="openModal('delete',item)"
                   >
                     刪除
                   </button>
