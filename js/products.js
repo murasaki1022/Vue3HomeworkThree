@@ -7,7 +7,7 @@ createApp({
   data() {
     return {
       apiUrl: `https://vue3-course-api.hexschool.io`,
-      path: `murasaki1022`,
+      apiPath: `murasaki1022`,
       products: [],
       isNew: false,
       tempProduct: {},
@@ -28,7 +28,7 @@ createApp({
         });
     },
     getProductList() {
-      const url = `${this.apiUrl}/v2/api/${this.path}/admin/products`;
+      let url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/products`;
       axios
         .get(url)
         .then((response) => {
@@ -52,7 +52,39 @@ createApp({
         delProductModal.show();
       }
     },
-    updateProduct() {},
+    updateProduct() {
+      let url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/product/${this.tempProduct.id}`;
+      let http = "put";
+
+      if (this.isNew) {
+        url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/product`;
+        http = "post";
+      }
+
+      axios[http](url, { data: this.tempProduct })
+        .then((response) => {
+          alert(response.data.message);
+          productModal.hide();
+          this.getProductList();
+        })
+        .catch((error) => {
+          alert(error.data.message);
+        });
+    },
+    deleteProduct() {
+      let url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/product/${this.tempProduct.id}`;
+
+      axios
+        .delete(url)
+        .then((response) => {
+          alert(response.data.message);
+          delProductModal.hide();
+          this.getProductList();
+        })
+        .catch((error) => {
+          alert(error.data.message);
+        });
+    },
   },
   mounted() {
     const token = document.cookie.replace(

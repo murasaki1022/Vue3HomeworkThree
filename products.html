@@ -77,7 +77,8 @@
           <div class="modal-content border-0">
             <div class="modal-header bg-dark text-white">
               <h5 id="productModalLabel" class="modal-title">
-                <span>新增產品</span>
+                <span v-if="isNew">新增產品</span>
+                <span v-else>編輯產品</span>
               </h5>
               <button
                 type="button"
@@ -226,7 +227,13 @@
               >
                 取消
               </button>
-              <button type="button" class="btn btn-primary">確認</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click="updateProduct"
+              >
+                確認
+              </button>
             </div>
           </div>
         </div>
@@ -265,7 +272,13 @@
               >
                 取消
               </button>
-              <button type="button" class="btn btn-danger">確認刪除</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                @click="deleteProduct"
+              >
+                確認刪除
+              </button>
             </div>
           </div>
         </div>
