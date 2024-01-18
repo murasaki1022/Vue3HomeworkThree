@@ -10,7 +10,9 @@ createApp({
       apiPath: `murasaki1022`,
       products: [],
       isNew: false,
-      tempProduct: {},
+      tempProduct: {
+        imagesUrl: [],
+      },
     };
   },
   methods: {
@@ -84,6 +86,10 @@ createApp({
         .catch((error) => {
           alert(error.data.message);
         });
+    },
+    addImage() {
+      this.tempProduct.imagesUrl = [];
+      this.tempProduct.imagesUrl.push("");
     },
   },
   mounted() {
