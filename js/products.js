@@ -52,6 +52,7 @@ createApp({
         delProductModal.show();
       }
     },
+    updateProduct() {},
   },
   mounted() {
     const token = document.cookie.replace(
