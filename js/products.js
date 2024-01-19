@@ -30,7 +30,7 @@ createApp({
         });
     },
     getProductList() {
-      let url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/products`;
+      let url = `${this.apiUrl}/v2/api/${this.apiPath}/admin/products/all`;
       axios
         .get(url)
         .then((response) => {
